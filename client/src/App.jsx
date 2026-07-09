@@ -34,8 +34,10 @@ function setStoredAuth(auth) {
     localStorage.setItem(AUTH_KEY, JSON.stringify(auth));
 }
 
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 async function apiFetch(path, { token, ...options } = {}) {
-    const response = await fetch(path, {
+    const response = await fetch(`${API_BASE}${path}`, {
         ...options,
         headers: {
             'Content-Type': 'application/json',
